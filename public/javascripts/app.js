@@ -25,6 +25,7 @@ app.controller('test',['$scope', '$http', function ($scope, $http) {
         //Get Type of the item
         $http.post('/graph', {"cmd": "g.V('" + $scope.keyword + "').In('name').Out('type').All()"}).
             success(function (data) {
+                $scope.subscription = "";
                 if (data != null && data.result != null && data.result.length > 0) {
                     $scope.keyword_visibility = 'visible';
                     $scope.type = data.result[0].id;
@@ -33,12 +34,20 @@ app.controller('test',['$scope', '$http', function ($scope, $http) {
                         $scope.keywordType = "is a Person";
                     } else if ( $scope.type == '/film/film') {
                         $scope.keywordType = "is a Film";
+                        $http.post('/graph', {"cmd": "g.V('" + $scope.keyword + "').In('name').Out('/film/film/directed_by').Out('name').All()"}).
+                            success(function (data) {
+                                if (data != null && data.result != null && data.result.length > 0) {
+                                    $scope.subscription = "created by " + data.result[0].id;
+                                }
+                            });
                     }else{
                         $scope.keywordType = "";
                         $scope.type = "";
+                        $scope.subscription = "";
                     }
                 }else{
                     $scope.keywordType = "";
+                    $scope.subscription = "";
                     $scope.keyword_visibility = 'hidden';
 
                 }
@@ -151,15 +160,6 @@ app.controller('test',['$scope', '$http', function ($scope, $http) {
                     $scope.films = null;
                     $scope.subtitel = "";
                 }
-            });
-
-        //Get All Films from Person
-        var query = "g.V('" + $scope.keyword + "').In('name').In('/film/performance/actor').In('/film/film/starring').Out('name').All()"
-        $http.post('/graph', {"cmd": query}).
-            success(function (data) {
-                $scope.results = data.result;
-            }).error(function (data) {
-                $scope.results = "Falsch";
             });
     }
 }]);
