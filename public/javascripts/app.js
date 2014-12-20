@@ -10,11 +10,11 @@ app.config(function ( $httpProvider) {
 
 app.controller('test', function ($scope, $http) {
 
-
-    $http.post('/graph',{"cmd": "g.V('Seven').In('name').All()"}).
+var query = "g.V('Brad Pitt').In('name').In('/film/performance/actor').In('/film/film/starring').Out('name').All()"
+    $http.post('/graph',{"cmd": query}).
         success(function(data) {
-            $scope.result = data;
+            $scope.results = data.result;
         }).error(function(data){
-            $scope.result = "Falsch";
+            $scope.results = "Falsch";
         });
 });

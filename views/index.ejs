@@ -10,7 +10,9 @@
 <body ng-app="thmmovies" >
 
 <div ng-controller="test">
-  {{ result }}
+  <div ng-repeat="result in results">
+  {{ result.id }}
+  </div>
 </div>
 
 <script src="/javascripts/app.js"></script>
