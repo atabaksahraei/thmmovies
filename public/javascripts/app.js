@@ -9,8 +9,16 @@ app.config(function ( $httpProvider) {
 });
 
 app.controller('test',['$scope', '$http', function ($scope, $http) {
+    $scope.keyword_visibility = 'hidden';
     $scope.keywordPicture_visibility = 'hidden';
     $scope.thmlocation_visibility = 'hidden';
+
+    $scope.newKeyWord=function(item)
+    {
+        console.info(item);
+        $scope.keyword = item.name;
+        $scope.runQuery();
+    }
 
     $scope.runQuery=function()
     {
@@ -18,6 +26,7 @@ app.controller('test',['$scope', '$http', function ($scope, $http) {
         $http.post('/graph', {"cmd": "g.V('" + $scope.keyword + "').In('name').Out('type').All()"}).
             success(function (data) {
                 if (data != null && data.result != null && data.result.length > 0) {
+                    $scope.keyword_visibility = 'visible';
                     $scope.type = data.result[0].id;
                     $scope.keywordType =  $scope.type;
                     if ( $scope.type == '/people/person') {
@@ -27,10 +36,10 @@ app.controller('test',['$scope', '$http', function ($scope, $http) {
                     }else{
                         $scope.keywordType = "";
                         $scope.type = "";
-
                     }
                 }else{
                     $scope.keywordType = "";
+                    $scope.keyword_visibility = 'hidden';
 
                 }
             });
@@ -102,9 +111,13 @@ app.controller('test',['$scope', '$http', function ($scope, $http) {
 
                             this.push(filmstar);
                         }, filmstarts_);
+
                         $scope.filmstarts = filmstarts_;
+                        $scope.subtitel = "stars";
+
                     } else {
                         $scope.filmstarts = null;
+                        $scope.subtitel = "";
                     }
                 });
 
@@ -130,9 +143,13 @@ app.controller('test',['$scope', '$http', function ($scope, $http) {
 
                         this.push(film);
                     }, films_);
+
                     $scope.films = films_;
+                    $scope.subtitel = "films";
+
                 } else {
                     $scope.films = null;
+                    $scope.subtitel = "";
                 }
             });
 
