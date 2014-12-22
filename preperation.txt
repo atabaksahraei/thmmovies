@@ -1,0 +1,25 @@
+Daten von Großen Graphen extrahieren:
+Filme: zgrep '\s<http://rdf\.freebase\.com/ns/film.' freebase-rdf-latest.gz > films.nq
+Topics: zgrep '\s<http://rdf\.freebase\.com/ns/(type\.object|common\.topic)' freebase-rdf-latest.gz > topics.nq
+
+
+DB init: ./cayley init --db=mongo --dbpath="<HOSTNAME>:<PORT>"
+
+Starten:
+Web: ./cayley http --config=cayley.cfg.overview
+Konsole: ./cayley repl --config=cayley.cfg.overview
+
+cayley.cfg.overview:
+{
+"database": "mongo”,
+"db_path": "127.0.0.1:27017",
+"read_only": false
+}
+
+Daten in Graph laden:
+./cayley load --config=cayley.cfg.overview --triples=films.nq
+./cayley load --config=cayley.cfg.overview --triples=topics.nq
+./cayley load --config=cayley.cfg.overview --triples=additionData.nq
+
+
+
