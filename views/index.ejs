@@ -57,7 +57,7 @@
           <div class="thumbnail" ng-click="newKeyWord(filmstar)" style="cursor: pointer;">
             <img data-src="holder.js/50x50" class="img-circle" alt="300x300" src="{{filmstar.picture}}" style="height: 100px;">
             <p class="text-capitalize text-center">{{filmstar.name}}</p>
-            <p class="text-capitalize text-center" style="color: #AAAAAA" >as {{filmstar.character}}</p>
+            <p class="text-capitalize text-center" style="color: #AAAAAA" ng-show="filmstar.character">as {{filmstar.character}}</p>
           </div>
         </div>
       </div>
