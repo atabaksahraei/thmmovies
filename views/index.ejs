@@ -45,19 +45,29 @@
 
       <div class="row">
         <div class="col-xs-6 col-md-3" ng-repeat="film in films">
-          <div class="thumbnail" ng-click="newKeyWord(film)" style="cursor: pointer;">
-            <img data-src="holder.js/50x50" class="img-circle" alt="300x300" src="{{film.picture}}" style="height: 100px;">
-            <p class="text-capitalize text-center">{{film.name}}</p>
+          <div class="thumbnail" >
+            <img data-src="holder.js/50x50" class="img-circle" alt="300x300" src="{{film.picture}}" ng-click="newKeyWord(film.name)" style="cursor: pointer;height: 100px;">
+            <p class="text-capitalize text-center" ng-click="newKeyWord(film.name)" style="cursor: pointer;">{{film.name}}</p>
           </div>
         </div>
       </div>
 
       <div class="row">
       <div class="col-xs-6 col-md-3" ng-repeat="filmstar in filmstarts">
-          <div class="thumbnail" ng-click="newKeyWord(filmstar)" style="cursor: pointer;">
-            <img data-src="holder.js/50x50" class="img-circle" alt="300x300" src="{{filmstar.picture}}" style="height: 100px;">
-            <p class="text-capitalize text-center">{{filmstar.name}}</p>
-            <p class="text-capitalize text-center" style="color: #AAAAAA" ng-show="filmstar.character">as {{filmstar.character}}</p>
+          <div class="thumbnail">
+            <img data-src="holder.js/50x50" class="img-circle" alt="300x300" src="{{filmstar.picture}}" style="height: 100px; cursor: pointer;" ng-click="newKeyWord(filmstar.name)">
+            <p class="text-capitalize text-center" style="cursor: pointer;" ng-click="newKeyWord(filmstar.name)">{{filmstar.name}}</p>
+            <p class="text-capitalize text-center" style="color: #AAAAAA;cursor: pointer;" ng-show="filmstar.character" ng-click="newKeyWord(filmstar.character)">as {{filmstar.character}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6 col-md-3" ng-repeat="film_character in films_character">
+          <div class="thumbnail" >
+            <img data-src="holder.js/50x50" class="img-circle" alt="300x300" src="{{film_character.picture}}" style="height: 100px;cursor: pointer;" ng-click="newKeyWord(film_character.name)">
+            <p class="text-capitalize text-center" ng-click="newKeyWord(film_character.name)" style="cursor: pointer;">{{film_character.name}}</p>
+            <p class="text-capitalize text-center" style="color: #AAAAAA; cursor: pointer;" ng-show="film_character.actor" ng-click="newKeyWord(film_character.actor)" >{{film_character.actor}}</p>
           </div>
         </div>
       </div>
