@@ -21,6 +21,9 @@ app.controller('test', ['$scope', '$http', function ($scope, $http) {
     $scope.runQuery = function () {
         var matchFilm = false;
         var matchPerson = false;
+        $scope.keyword_visibility = 'hidden';
+        $scope.keywordPicture_visibility = 'hidden';
+        $scope.thmlocation_visibility = 'hidden';
 
         //Get Type of the item
         $http.post('/graph', {"cmd": "g.V('" + $scope.keyword + "').In('name').Out('type').All()"}).
