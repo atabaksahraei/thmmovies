@@ -102,21 +102,31 @@ app.controller('test',['$scope', '$http', function ($scope, $http) {
             });
 
             //Get All Stars in The Film
-            $http.post('/graph', {"cmd": "g.V('" + $scope.keyword + "').In('name').Out('/film/film/starring').Out('/film/performance/actor').Out('name').All()"}).
+            $http.post('/graph', {"cmd": "g.V('" + $scope.keyword + "').In('name').Out('/film/film/starring').All()"}).
                 success(function (data) {
                     if (data != null && data.result != null && data.result.length > 0) {
                         var filmstarts_ = new Array();
                         angular.forEach(data.result, function(value, key) {
                             var filmstar = {};
-                            filmstar.name = value.id;
-                            $http.post('/graph', {"cmd": "g.V('" + filmstar.name + "').In('name').Out('hasPicture').All()"}).
+
+                            $http.post('/graph', {"cmd": "g.V('" + value.id + "').Out('/film/performance/actor').Out('name').All()"}).
                                 success(function (data) {
-                                    if (data != null && data.result != null && data.result.length > 0) {
-                                        filmstar.picture = data.result[0].id;
-                                    }else{
-                                        filmstar.picture = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA0Njg3NSIgeT0iNzAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTBwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4xNDB4MTQwPC90ZXh0PjwvZz48L3N2Zz4=";
-                                    }
+                                    filmstar.name = data.result[0].id;
+                                    $http.post('/graph', {"cmd": "g.V('" + filmstar.name + "').In('name').Out('hasPicture').All()"}).
+                                        success(function (data) {
+                                            if (data != null && data.result != null && data.result.length > 0) {
+                                                filmstar.picture = data.result[0].id;
+                                            }else{
+                                                filmstar.picture = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA0Njg3NSIgeT0iNzAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTBwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4xNDB4MTQwPC90ZXh0PjwvZz48L3N2Zz4=";
+                                            }
+                                        });
                                 });
+
+                            $http.post('/graph', {"cmd": "g.V('" + value.id + "').Out('/film/performance/character').All()"}).
+                                success(function (data) {
+                                    filmstar.character = data.result[0].id;
+                                });
+                            console.debug(filmstar);
 
                             this.push(filmstar);
                         }, filmstarts_);
