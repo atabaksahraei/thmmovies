@@ -124,7 +124,7 @@ app.controller('test', ['$scope', '$http', function ($scope, $http) {
                                     $http.post('/graph', {"cmd": "g.V('" + value.id + "').Out('/film/performance/actor').Out('name').All()"}).
                                         success(function (data) {
                                             filmstar.name = data.result[0].id;
-                                            $http.post('/graph', {"cmd": "g.V('" + filmstar.name + "').Out('hasPicture').All()"}).
+                                            $http.post('/graph', {"cmd": "g.V('" + filmstar.name + "').In('name').Out('hasPicture').All()"}).
                                                 success(function (data) {
                                                     if (data != null && data.result != null && data.result.length > 0) {
                                                         filmstar.picture = data.result[0].id;
@@ -196,7 +196,7 @@ app.controller('test', ['$scope', '$http', function ($scope, $http) {
                                 angular.forEach(data.result, function (value, key) {
                                     var film = {};
                                     film.name = value.id;
-                                    $http.post('/graph', {"cmd": "g.V('" + film.name + "').In('name').Out('hasPicture').All()"}).
+                                    $http.post('/graph', {"cmd": "g.V('" + film.name + "').Out('hasPicture').All()"}).
                                         success(function (data) {
                                             if (data != null && data.result != null && data.result.length > 0) {
                                                 film.picture = data.result[0].id;
