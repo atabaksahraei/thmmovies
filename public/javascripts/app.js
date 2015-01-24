@@ -78,6 +78,21 @@ app.controller('test', ['$scope', '$http', function ($scope, $http) {
                         });
                 }
 
+                if (!(matchFilm || matchPerson)) {
+                    //Get Picture of The Item
+                    $http.post('/graph', {"cmd": "g.V('" + $scope.keyword + "').Out('hasPicture').All()"}).
+                        success(function (data) {
+                            if (data != null && data.result != null && data.result.length > 0) {
+                                $scope.keywordPicture = data.result[0].id;
+                                $scope.keywordPicture_visibility = 'visible';
+                            } else {
+                                $scope.keywordPicture = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjE4OS42NTYyNSIgeT0iMjUwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjIzcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NTAweDUwMDwvdGV4dD48L2c+PC9zdmc+";
+                                $scope.keywordPicture_visibility = 'hidden';
+
+                            }
+                        });
+                }
+
                 if (matchFilm) {
                     //Get THm Libary information
                     $http.post('/graph', {"cmd": "g.V('" + $scope.keyword + "').In('name').Out('/thmlib/film/').Out('name').All()"}).
@@ -196,7 +211,7 @@ app.controller('test', ['$scope', '$http', function ($scope, $http) {
                                 angular.forEach(data.result, function (value, key) {
                                     var film = {};
                                     film.name = value.id;
-                                    $http.post('/graph', {"cmd": "g.V('" + film.name + "').Out('hasPicture').All()"}).
+                                    $http.post('/graph', {"cmd": "g.V('" + film.name + "').In('name').Out('hasPicture').All()"}).
                                         success(function (data) {
                                             if (data != null && data.result != null && data.result.length > 0) {
                                                 film.picture = data.result[0].id;
