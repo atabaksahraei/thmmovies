@@ -122,19 +122,28 @@
 </en/orlando_bloom> <hasPicture> <http://topnews.in/light/files/Orlando-Bloom-Hobbit.jpg>.
 </en/evangeline_lilly> <hasPicture> <http://img2.wikia.nocookie.net/__cb20140621100556/marvelmovies/images/3/32/Evangeline_Lilly.jpg>.
 
+"David Mills" <hasPicture> <http://www.oocities.org/nesdroc/bradpittseven.jpg>.
+"Tracy Mills" <hasPicture> <http://4.bp.blogspot.com/-1fHdPx40kcc/TwOE9eTrKYI/AAAAAAAAAKc/gvnJ_PLePoY/s1600/Tracey%2Bmills.jpg>.
+"John Doe" <hasPicture> <http://application.denofgeek.com/pics/film/list/unsettling/04.jpg>.
+"Detective Lt. William Somerset" <hasPicture> <http://reelists.com/wp-content/uploads/2011/10/Se7en.jpg>.
+
+_:4123123 </film/performance/actor> </en/martin_freeman> .
+_:4123123 </film/performance/character> "Bilbo Baggins" .
+_:4123123 <hasPicture> <http://f-cdn.filmjunkies.de/film/514/fotos/foto_hobbit-unerwartete-reise-52416.jpg>.
+_:48992 <hasPicture> <http://spinoff.comicbookresources.com/wp-content/uploads/2012/10/hobbit-mckellen.jpg>.
+
 </en/the_hobbit_partone> </film/film/directed_by> </en/peter_jackson>.
 </en/the_hobbit_partone> <hasPicture> <http://www.moviepilot.de/files/images/0912/0805/De_pub_Main_Art_Hauptplakat_HAUJ.jpg>.
 </en/the_hobbit_partone> </thmlib/film/> <r127_1>.
-</en/the_hobbit_partone> </film/film/starring> _:101303.
-</en/the_hobbit_partone> </film/film/starring> _:10026.
-</en/the_hobbit_partone> </film/film/starring> _:107805.
+</en/the_hobbit_partone> </film/film/starring> _:48992.
+</en/the_hobbit_partone> </film/film/starring> _:4123123.
 </en/the_hobbit_partone> </film/film/starring> _:63698.
 </en/the_hobbit_partone> </film/film/starring> _:25023.
 </en/the_hobbit_partone> </film/film/starring> _:35538.
 </en/the_hobbit_partone> </film/film/starring> _:100766.
 </en/the_hobbit_partone> </film/film/starring> _:124457.
 </en/the_hobbit_partone> </film/film/starring> _:28747.
-</en/the_hobbit_partone> </film/film/starring> _:109913.
+</en/the_hobbit_partone> </film/film/starring> _:48991.
 </en/the_hobbit_partone> </film/film/starring> _:102411.
 </en/the_hobbit_partone> </film/film/starring> _:103889.
 </en/the_hobbit_partone> <name> "The Hobbit - An Unexpected Journey".
@@ -143,9 +152,9 @@
 </en/the_hobbit_smaug> </film/film/directed_by> </en/peter_jackson>.
 </en/the_hobbit_smaug> <hasPicture> <http://www.moviepilot.de/files/images/movie/file/10819922/hobbit-2-poster-2.jpg>.
 </en/the_hobbit_smaug> </thmlib/film/> <r127_1>.
-</en/the_hobbit_smaug> </film/film/starring> _:107805.
+</en/the_hobbit_smaug> </film/film/starring> _:4123123.
+</en/the_hobbit_smaug> </film/film/starring> _:48992.
 </en/the_hobbit_smaug> </film/film/starring> _:10026.
-</en/the_hobbit_smaug> </film/film/starring> _:101303.
 </en/the_hobbit_smaug> </film/film/starring> _:63698.
 </en/the_hobbit_smaug> </film/film/starring> _:25023.
 </en/the_hobbit_smaug> </film/film/starring> _:35538.
@@ -163,8 +172,8 @@
 </en/the_hobbit_fiveArmies> </film/film/directed_by> </en/peter_jackson>.
 </en/the_hobbit_fiveArmies> <hasPicture> <http://www.moviepilot.de/files/images/movie/file/11009320/der-hobbit-3-comic-con-poster.jpg>.
 </en/the_hobbit_fiveArmies> </thmlib/film/> <r127_1>.
-</en/the_hobbit_fiveArmies> </film/film/starring> _:107805.
-</en/the_hobbit_fiveArmies> </film/film/starring> _:101303.
+</en/the_hobbit_fiveArmies> </film/film/starring> _:4123123.
+</en/the_hobbit_fiveArmies> </film/film/starring> _:48992.
 </en/the_hobbit_fiveArmies> </film/film/starring> _:63698.
 </en/the_hobbit_fiveArmies> </film/film/starring> _:25023.
 </en/the_hobbit_fiveArmies> </film/film/starring> _:35538.
